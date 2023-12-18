@@ -12,6 +12,11 @@ const register = async (req, res) => {
       name: req.body.name,
       password: hashedPassword,
     });
+    console.log({
+      email: req.body.email,
+      name: req.body.name,
+      password: hashedPassword,
+    });
     await user.save();
     res.status(201).json({ message: "User successfully registered" });
   } catch (error) {
@@ -39,7 +44,9 @@ const login = (req, res, next) => {
 
 const logout = (req, res) => {
   req.logout((err) => {
-    if (err) { return next(err); } // Handle errors if any
+    if (err) {
+      return next(err);
+    } // Handle errors if any
     res.status(200).json({ message: "Logged out successfully" });
   });
 };

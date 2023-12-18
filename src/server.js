@@ -4,6 +4,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import session from 'express-session';
 import passport from 'passport';
+import cors from 'cors';
 import indexRouter from './routes/index.js';
 import passportConfig from './config/passport.js';
 import keys from './config/key.js';
@@ -26,6 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session({ secret: keys.sessionSecret }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors());
 
 // Use routers
 app.use('/', indexRouter);
